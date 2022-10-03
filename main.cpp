@@ -6,9 +6,9 @@
 #include <time.h>
 
 #include "f_lab2_sequance.h"
-#include "f_lab2_dynamicarray.h"
+//#include "f_lab2_dynamicarray.h"
 #include "f_lab2_arraysequance.h"
-#include "f_lab2_linkedlist.h"
+//#include "f_lab2_linkedlist.h"
 #include "f_lab2_linkedlistsequance.h"
 #include "f_lab4_sort.h"
 
@@ -49,7 +49,7 @@ int main(int argc, char *argv[]) {
     }
 
     ofstream file;
-    file.open(output + ".csv", ios::out);
+    file.open(output + "1.csv", ios::out);
 
     if (shell) {
         ShellSort<int> *sort = new ShellSort<int>;
@@ -76,8 +76,42 @@ int main(int argc, char *argv[]) {
 
     file.close();
 
+    
+    ofstream file1;
+    file1.open(output + "2.csv", ios::out);
+
+    if (shell) {
+        ShellSort<int> *sort1 = new ShellSort<int>;
+        file1 << "shell,";
+        for (int i = step; i <= size; i += step) {
+            cout << i << endl;
+            ArraySequance<int> *b = new ArraySequance<int>(items, i, 1, i);
+            clock_t start = clock();
+            sort1->sort(b, comp);
+            clock_t end = clock();
+            double time = (double)(end - start) / CLOCKS_PER_SEC;
+            file1 << time << ",";
+            delete b;
+        }
+        file1 << '\n';
+        delete sort1;
+    }
+
+    file1 << "size,";
+    for (int i = step; i <= size; i += step) {
+        file1 << i << ',';
+    }
+
+
+    file1.close();
+
+
     string command = "python3 py.py " + output;
     system(command.c_str());//system work on char *;
+    
+    string command1 = "python3 py1.py " + output;
+    system(command1.c_str());//system work on char *;
+
 
     delete[] items;
     

@@ -97,7 +97,7 @@ Sequance<T> *ArraySequance<T>::GetSubSequance(int startIndex, int endIndex) cons
     for (int i = 0; i < endIndex - startIndex + 1; i++) {
         array[i] = items->Get(startIndex + i);
     }
-    ArraySequance<T> *newArraySequance = new ArraySequance(array, endIndex - startIndex + 1);
+    ArraySequance<T> *newArraySequance = new ArraySequance(array, endIndex - startIndex + 1, 1, endIndex - startIndex + 1);
     delete[] array;
     return newArraySequance;
 }

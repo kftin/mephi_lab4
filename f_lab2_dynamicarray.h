@@ -64,6 +64,17 @@ int DynamicArray<T>::GetLength() {
 }
 
 template <typename T>
+int DynamicArray<T>::GetWidth() {
+    return width;
+}
+
+template <typename T>
+int DynamicArray<T>::GetHeigth() {
+    return heigth;
+}
+
+
+template <typename T>
 void DynamicArray<T>::Set(int index, T value) {
     if (index < 0 || index > length) {
         throw out_of_range("index out of range");
