@@ -73,6 +73,12 @@ int main(int argc, char *argv[]) {
         file << i << ',';
     }
 
+
+    file.close();
+
+    string command = "python3 py.py " + output;
+    system(command.c_str());//system work on char *;
+
     delete[] items;
     
 }
