@@ -18,7 +18,9 @@ class Sequance {
         virtual void Append(T item) = 0;
         virtual void Prepend(T item) = 0;
         virtual void InsertAt(T item, int index) = 0;
+
         virtual Sequance<T> *Concat(Sequance<T> *list) = 0;
+        virtual Sequance<T> *Copy() const = 0;
         
         virtual ~Sequance() {}
 };

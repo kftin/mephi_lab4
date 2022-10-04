@@ -13,7 +13,7 @@ class ArraySequance: public Sequance<T> {
 
         ArraySequance() { this->items = new DynamicArray<T>; }
         ArraySequance(T *items, int count, int h, int w);
-        ArraySequance(const DynamicArray<T> *dynamicArray);
+        ArraySequance(DynamicArray<T> *dynamicArray);
 
         T Get(int index) const override {
             return this->items->Get(index);
@@ -57,6 +57,10 @@ class ArraySequance: public Sequance<T> {
         Sequance<T> *Concat(Sequance<T> *list) override;
         Sequance<T> *GetSubSequance(int startIndex, int endIndex) const override;
 
+        Sequance<T> *Copy() const override {
+            ArraySequance<T> *res = new ArraySequance<T>(this->items->Copy());
+            return res;
+        }
 
         ~ArraySequance() { delete items; }
 };
@@ -77,7 +81,7 @@ ArraySequance<T>::ArraySequance(T *items, int count, int h, int w) {
 }
 
 template <typename T>
-ArraySequance<T>::ArraySequance(const DynamicArray<T> *dynamicArray) {
+ArraySequance<T>::ArraySequance(DynamicArray<T> *dynamicArray) {
     this->items = new DynamicArray<T>(dynamicArray);
 }
 

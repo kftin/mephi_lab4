@@ -26,6 +26,8 @@ class DynamicArray {
         void Set(int index, T value);
         void Resize(int newSize);
 
+        DynamicArray *Copy();
+
         ~DynamicArray() {
             delete[] pointer;
         }
@@ -48,6 +50,17 @@ template <typename T>
 DynamicArray<T>::DynamicArray(int size) {
     pointer = new T[size];
     length = size;
+}
+
+template <typename T>
+DynamicArray<T>::DynamicArray(DynamicArray<T> *dynamicArray) {
+    pointer = new T[dynamicArray->length];
+    length = dynamicArray->length;
+    heigth = dynamicArray->heigth;
+    width = dynamicArray->width;
+    for (int i = 0; i < length; i++) {
+        pointer[i] = (dynamicArray->pointer)[i];
+    }
 }
 
 template <typename T>
@@ -93,5 +106,12 @@ void DynamicArray<T>::Resize(int newSize) {
     pointer = ptr;
     length = newSize;
 }
+
+template <typename T>
+DynamicArray<T> *DynamicArray<T>::Copy() {
+    DynamicArray<T> *newList = new DynamicArray<T>(this);
+    return newList;
+}
+
 
 #endif

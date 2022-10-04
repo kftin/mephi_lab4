@@ -66,6 +66,11 @@ class LinkedListSequance : public Sequance<T> {
             return this;
         }
 
+        Sequance<T> *Copy() const override {
+            LinkedListSequance<T> *res = new LinkedListSequance<T>(this->items->Copy());
+            return res;
+        }
+
         ~LinkedListSequance() {
             delete items;
         }

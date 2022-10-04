@@ -42,6 +42,7 @@ class LinkedList {
         void Prepend(T item);
         void InsertAt(T item, int index);
         LinkedList<T> *Concat(LinkedList<T> *list);
+        LinkedList<T> *Copy();
 
         ~LinkedList() {
             Element *ptr = head;
@@ -216,7 +217,7 @@ void LinkedList<T>::InsertAt(T item, int index) {
 }
 
 template <typename T>
-LinkedList<T>* LinkedList<T>::GetSubList(int startIndex, int endIndex) {
+LinkedList<T> *LinkedList<T>::GetSubList(int startIndex, int endIndex) {
     if (startIndex > endIndex) {
         throw invalid_argument("startIndex should be not bigger than endIndex");
     }
@@ -234,6 +235,12 @@ LinkedList<T>* LinkedList<T>::GetSubList(int startIndex, int endIndex) {
         curIndex++;
     }
     return subList;
+}
+
+template <typename T>
+LinkedList<T> *LinkedList<T>::Copy() {
+    LinkedList<T> *newList = new LinkedList<T>(this);
+    return newList;
 }
 
 template <typename T>

@@ -15,22 +15,23 @@ template <typename T>
 class ShellSort : public ISorter<T> {
     public:
     Sequance<T> *sort(Sequance<T> *seq, int (*comp)(T left, T right)) override {
-        int length = seq->GetLength();
+        Sequance<T> *res = seq->Copy();
+        int length = res->GetLength();
         int step = length / 2;
         while (step) {
             for (int i = 0; i < length; i++) {
                 for (int j = i; j + step < length; j += step) {
-                    int f = comp(seq->Get(j), seq->Get(j + step));
+                    int f = comp(res->Get(j), res->Get(j + step));
                     if (f > 0) {
-                        T tmp = seq->Get(j);
-                        seq->Set(j, seq->Get(j + step));
-                        seq->Set(j + step, tmp);
+                        T tmp = res->Get(j);
+                        res->Set(j, res->Get(j + step));
+                        res->Set(j + step, tmp);
                     }
                 }
             }
             step /= 2;
         }
-        return seq;
+        return res;
     }
 };
 
