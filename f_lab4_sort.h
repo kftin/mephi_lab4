@@ -35,4 +35,26 @@ class ShellSort : public ISorter<T> {
     }
 };
 
+template <typename T>
+class SelectionSort : public ISorter<T> {
+    public:
+    Sequance<T> *sort(Sequance<T> *seq, int (*comp)(T left, T right)) override {
+        Sequance<T> *res = seq->Copy();
+        for (int i = 0; i < res->GetLength() - 1; ++i) {
+            int min_i = i;
+            for (int j = i + 1; j < res->GetLength(); ++j) {
+                if (comp(res->Get(min_i), res->Get(j) > 0)) {
+                    min_i = j;
+                }
+            }
+            if (i != min_i) {
+                T tmp = res->Get(i);
+                res->Set(i, res->Get(min_i));
+                res->Set(min_i, tmp);
+            }
+        }
+
+    }
+};
+
 #endif

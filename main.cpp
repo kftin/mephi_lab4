@@ -12,11 +12,13 @@
 #include "f_lab2_linkedlistsequance.h"
 #include "f_lab4_sort.h"
 
-void parsing(int argc, char *argv[], bool &shell, int &size, int &step, string &output) {
+void parsing(int argc, char *argv[], bool &shell, int &size, int &step, string &output, bool &selection) {
     int i = 1;
     while (i < argc) {
         if ((string)argv[i] == "--shell") {
             shell = true;
+        } else if ((string)argv[i] == "--selection") {
+            selection = true;
         } else if ((string)argv[i] == "--size") {
             size = atoi(argv[i + 1]);
             i++;
@@ -37,11 +39,11 @@ int comp(int left, int right) {
 
 int main(int argc, char *argv[]) {
 
-    bool shell = false;
+    bool shell = false, selection = false;
     int size = 100, step = 10;
     string output = "output";
 
-    parsing(argc, argv, shell, size, step, output);
+    parsing(argc, argv, shell, size, step, output, selection);
 
     int *items = new int[size];
     for (int i = 0; i < size; i++) {    
@@ -67,6 +69,23 @@ int main(int argc, char *argv[]) {
         file << '\n';
         delete sort;
     }
+    if (selection) {
+        SelectionSort<int> *sort = new SelectionSort<int>;
+        file << "selection,";
+        for (int i = step; i <= size; i += step) {
+            cout << i << endl;
+            LinkedListSequance<int> *a = new LinkedListSequance<int>(items, i, 1, i);
+            clock_t start = clock();
+            sort->sort(a, comp);
+            clock_t end = clock();
+            double time = (double)(end - start) / CLOCKS_PER_SEC;
+            file << time << ",";
+            delete a;
+        }
+        file << '\n';
+        delete sort;
+    }
+
 
     file << "size,";
     for (int i = step; i <= size; i += step) {
@@ -96,6 +115,23 @@ int main(int argc, char *argv[]) {
         file1 << '\n';
         delete sort1;
     }
+    if (selection) {
+        SelectionSort<int> *sort1 = new SelectionSort<int>;
+        file1 << "selection,";
+        for (int i = step; i <= size; i += step) {
+            cout << i << endl;
+            ArraySequance<int> *b = new ArraySequance<int>(items, i, 1, i);
+            clock_t start = clock();
+            sort1->sort(b, comp);
+            clock_t end = clock();
+            double time = (double)(end - start) / CLOCKS_PER_SEC;
+            file1 << time << ",";
+            delete b;
+        }
+        file1 << '\n';
+        delete sort1;
+    }
+
 
     file1 << "size,";
     for (int i = step; i <= size; i += step) {

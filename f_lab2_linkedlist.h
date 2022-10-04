@@ -111,9 +111,9 @@ LinkedList<T>::LinkedList(LinkedList<T> *list) {
    tail = NULL;
    Element *ptr = list->head;
    for (int i = 0; i < size; i++) {
-       if (i == size - 1) {
-            tail = ptr;
-       }
+       //if (i == size - 1) {
+       //     tail = ptr;
+       //}
         this->Append(ptr->data);
         ptr = ptr->next;
    }
