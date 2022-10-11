@@ -5,11 +5,11 @@
 #include <algorithm>
 #include <time.h>
 
-#include "f_lab2_sequance.h"
+#include "f_lab2_sequence.h"
 //#include "f_lab2_dynamicarray.h"
-#include "f_lab2_arraysequance.h"
+#include "f_lab2_arraysequence.h"
 //#include "f_lab2_linkedlist.h"
-#include "f_lab2_linkedlistsequance.h"
+#include "f_lab2_linkedlistsequence.h"
 #include "f_lab4_sort.h"
 
 void parsing(int argc, char *argv[], bool &shell, int &size, int &step, string &output, bool &selection) {
@@ -58,7 +58,7 @@ int main(int argc, char *argv[]) {
         file << "shell,";
         for (int i = step; i <= size; i += step) {
             cout << i << endl;
-            LinkedListSequance<int> *a = new LinkedListSequance<int>(items, i, 1, i);
+            LinkedListSequence<int> *a = new LinkedListSequence<int>(items, i, 1, i);
             clock_t start = clock();
             sort->sort(a, comp);
             clock_t end = clock();
@@ -74,7 +74,7 @@ int main(int argc, char *argv[]) {
         file << "selection,";
         for (int i = step; i <= size; i += step) {
             cout << i << endl;
-            LinkedListSequance<int> *a = new LinkedListSequance<int>(items, i, 1, i);
+            LinkedListSequence<int> *a = new LinkedListSequence<int>(items, i, 1, i);
             clock_t start = clock();
             sort->sort(a, comp);
             clock_t end = clock();
@@ -104,7 +104,7 @@ int main(int argc, char *argv[]) {
         file1 << "shell,";
         for (int i = step; i <= size; i += step) {
             cout << i << endl;
-            ArraySequance<int> *b = new ArraySequance<int>(items, i, 1, i);
+            ArraySequence<int> *b = new ArraySequence<int>(items, i, 1, i);
             clock_t start = clock();
             sort1->sort(b, comp);
             clock_t end = clock();
@@ -120,7 +120,7 @@ int main(int argc, char *argv[]) {
         file1 << "selection,";
         for (int i = step; i <= size; i += step) {
             cout << i << endl;
-            ArraySequance<int> *b = new ArraySequance<int>(items, i, 1, i);
+            ArraySequence<int> *b = new ArraySequence<int>(items, i, 1, i);
             clock_t start = clock();
             sort1->sort(b, comp);
             clock_t end = clock();
