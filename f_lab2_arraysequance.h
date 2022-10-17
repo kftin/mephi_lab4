@@ -1,19 +1,19 @@
-#ifndef F_LAB2_ARRAYSequence
-#define F_LAB2_ARRAYSequence
+#ifndef F_LAB2_ARRAYSequance
+#define F_LAB2_ARRAYSequance
 
-#include "f_lab2_sequence.h"
+#include "f_lab2_sequance.h"
 #include "f_lab2_dynamicarray.h"
 
 template <typename T>
-class ArraySequence: public Sequence<T> {
+class ArraySequance: public Sequance<T> {
     private:
         DynamicArray<T> *items;
 
     public:
 
-        ArraySequence() { this->items = new DynamicArray<T>; }
-        ArraySequence(T *items, int count, int h, int w);
-        ArraySequence(DynamicArray<T> *dynamicArray);
+        ArraySequance() { this->items = new DynamicArray<T>; }
+        ArraySequance(T *items, int count, int h, int w);
+        ArraySequance(DynamicArray<T> *dynamicArray);
 
         T Get(int index) const override {
             return this->items->Get(index);
@@ -54,19 +54,19 @@ class ArraySequence: public Sequence<T> {
             this->items->Set(0, item);
         }
         void InsertAt(T item, int index) override;
-        Sequence<T> *Concat(Sequence<T> *list) override;
-        Sequence<T> *GetSubSequence(int startIndex, int endIndex) const override;
+        Sequance<T> *Concat(Sequance<T> *list) override;
+        Sequance<T> *GetSubSequance(int startIndex, int endIndex) const override;
 
-        Sequence<T> *Copy() const override {
-            ArraySequence<T> *res = new ArraySequence<T>(this->items->Copy());
+        Sequance<T> *Copy() const override {
+            ArraySequance<T> *res = new ArraySequance<T>(this->items->Copy());
             return res;
         }
 
-        ~ArraySequence() { delete items; }
+        ~ArraySequance() { delete items; }
 };
 
 template <typename T>
-void ArraySequence<T>::InsertAt(T item, int index) {
+void ArraySequance<T>::InsertAt(T item, int index) {
     this->items->Resize(this->items->GetLength() + 1);
     for (int i = this->items->GetLength() - 1; i > index; i--) {
         this->items->Set(i, this->items->Get(i - 1));
@@ -76,17 +76,17 @@ void ArraySequence<T>::InsertAt(T item, int index) {
 }
 
 template <typename T>
-ArraySequence<T>::ArraySequence(T *items, int count, int h, int w) {
+ArraySequance<T>::ArraySequance(T *items, int count, int h, int w) {
     this->items = new DynamicArray<T>(items, count, h, w);
 }
 
 template <typename T>
-ArraySequence<T>::ArraySequence(DynamicArray<T> *dynamicArray) {
+ArraySequance<T>::ArraySequance(DynamicArray<T> *dynamicArray) {
     this->items = new DynamicArray<T>(dynamicArray);
 }
 
 template <typename T>
-Sequence<T> *ArraySequence<T>::Concat(Sequence<T> *list) {
+Sequance<T> *ArraySequance<T>::Concat(Sequance<T> *list) {
     int oldSize = this->items->GetLength();
     this->items->Resize(oldSize + list->GetLength());
     for (int i = 0; i < list->GetLength(); i++) {
@@ -96,14 +96,14 @@ Sequence<T> *ArraySequence<T>::Concat(Sequence<T> *list) {
 }
 
 template <typename T>
-Sequence<T> *ArraySequence<T>::GetSubSequence(int startIndex, int endIndex) const {
+Sequance<T> *ArraySequance<T>::GetSubSequance(int startIndex, int endIndex) const {
     T *array = new T[endIndex - startIndex + 1];
     for (int i = 0; i < endIndex - startIndex + 1; i++) {
         array[i] = items->Get(startIndex + i);
     }
-    ArraySequence<T> *newArraySequence = new ArraySequence(array, endIndex - startIndex + 1, 1, endIndex - startIndex + 1);
+    ArraySequance<T> *newArraySequance = new ArraySequance(array, endIndex - startIndex + 1, 1, endIndex - startIndex + 1);
     delete[] array;
-    return newArraySequence;
+    return newArraySequance;
 }
 
 

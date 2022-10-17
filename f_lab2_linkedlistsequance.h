@@ -1,22 +1,22 @@
-#ifndef F_LAB2_LINKEDLISTSequence
-#define F_LAB2_LINKEDLISTSequence
+#ifndef F_LAB2_LINKEDLISTSequance
+#define F_LAB2_LINKEDLISTSequance
 
 #include "f_lab2_linkedlist.h"
-#include "f_lab2_sequence.h"
+#include "f_lab2_sequance.h"
 
 template <typename T>
-class LinkedListSequence : public Sequence<T> {
+class LinkedListSequance : public Sequance<T> {
     private:
         LinkedList<T> *items;
 
     public:
-        LinkedListSequence() {
+        LinkedListSequance() {
             this->items = new LinkedList<T>; 
         }
-        LinkedListSequence(T *items, int count, int h, int w) {
+        LinkedListSequance(T *items, int count, int h, int w) {
             this->items = new LinkedList<T>(items, count, h, w);
         }
-        LinkedListSequence(LinkedList<T> *list) {
+        LinkedListSequance(LinkedList<T> *list) {
             this->items = new LinkedList<T>(list);
         }
 
@@ -44,11 +44,11 @@ class LinkedListSequence : public Sequence<T> {
             return this->items->Get(index);
         }
 
-        Sequence<T> *GetSubSequence(int startIndex, int endIndex) const override {
+        Sequance<T> *GetSubSequance(int startIndex, int endIndex) const override {
             LinkedList<T> *list = this->items->GetSubList(startIndex, endIndex);
-            LinkedListSequence<T> *listSequence = new LinkedListSequence<T>(list);
+            LinkedListSequance<T> *listSequance = new LinkedListSequance<T>(list);
             delete list;
-            return listSequence;
+            return listSequance;
         }
         void Append(T item) override {
             this->items->Append(item);
@@ -59,19 +59,19 @@ class LinkedListSequence : public Sequence<T> {
         void InsertAt(T item, int index) override {
             this->items->InsertAt(item, index);
         }
-        Sequence<T> *Concat(Sequence<T> *list) override {
+        Sequance<T> *Concat(Sequance<T> *list) override {
             for (int i = 0; i < list->GetLength(); i++) {
                 this->items->Append(list->Get(i));
             }
             return this;
         }
 
-        Sequence<T> *Copy() const override {
-            LinkedListSequence<T> *res = new LinkedListSequence<T>(this->items->Copy());
+        Sequance<T> *Copy() const override {
+            LinkedListSequance<T> *res = new LinkedListSequance<T>(this->items->Copy());
             return res;
         }
 
-        ~LinkedListSequence() {
+        ~LinkedListSequance() {
             delete items;
         }
 };
