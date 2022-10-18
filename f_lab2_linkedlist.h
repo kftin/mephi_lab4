@@ -22,10 +22,10 @@ class LinkedList {
 
     public:
         int length;
-        int heigth;
-        int width;
+        //int heigth;
+        //int width;
 
-        LinkedList(T *items, int count, int h, int w);
+        LinkedList(T *items, int count);
         LinkedList();
         LinkedList(LinkedList<T> *list);
 
@@ -35,8 +35,8 @@ class LinkedList {
         T Get(int index);
         LinkedList<T> *GetSubList(int startIndex, int endIndex);
         int GetLength();
-        int GetHeigth();
-        int GetWidth();
+        //int GetHeigth();
+        //int GetWidth();
 
         void Append(T item); 
         void Prepend(T item);
@@ -72,32 +72,20 @@ void LinkedList<T>::Set(int index, T item) {
 }
 
 template <typename T>
-LinkedList<T>::LinkedList(T *items, int count, int h, int w) {
+LinkedList<T>::LinkedList(T *items, int count) {
     head = NULL;
     tail = NULL;
-    width = w;
-    heigth = h;
-    if (h * w == count * count) {
-        for (int i = 0; i < count * count; i++) {
-            if (i % (w + 1) == 0) {
-                this->Append(items[i / (w + 1)]);
-            } else {
-                this->Append(0);
-            }
-        }
-    } else {
-        for (int i = 0; i < count; i++) {
-            this->Append(items[i]);
-        }
+    length = count;
+    for (int i = 0; i < count; i++) {
+        this->Append(items[i]);
     }
-    length = h * w;
 }
 
 template <typename T>
 LinkedList<T>::LinkedList() {
     this->length = 0;
-    width = 0;
-    heigth = 0;
+    //width = 0;
+    //heigth = 0;
     this->head = NULL;
     this->tail = NULL;
 }
@@ -105,8 +93,8 @@ LinkedList<T>::LinkedList() {
 template <typename T>
 LinkedList<T>::LinkedList(LinkedList<T> *list) {
    int size = list->length;
-   heigth = list->heigth;
-   width = list->width;
+   //heigth = list->heigth;
+   //width = list->width;
    head = NULL;
    tail = NULL;
    Element *ptr = list->head;
@@ -134,7 +122,7 @@ template <typename T>
 int LinkedList<T>::GetLength() {
     return length;
 }
-
+/*
 template <typename T>
 int LinkedList<T>::GetWidth() {
     return width;
@@ -144,7 +132,7 @@ template <typename T>
 int LinkedList<T>::GetHeigth() {
     return heigth;
 }
-
+*/
 template <typename T>
 T LinkedList<T>::Get(int index) {
     Element *ptr = head;

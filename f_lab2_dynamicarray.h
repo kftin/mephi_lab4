@@ -10,18 +10,18 @@ class DynamicArray {
     private:
         int length;
         T *pointer;
-        int width;
-        int heigth;
+        //int width;
+        //int heigth;
 
     public:
-        DynamicArray(T *items, int count, int h, int w);
+        DynamicArray(T *items, int count);
         DynamicArray(int size);
         DynamicArray(DynamicArray<T> *dynamicArray);
 
         T Get(int index);
         int GetLength();
-        int GetHeigth();
-        int GetWidth();
+        //int GetHeigth();
+        //int GetWidth();
 
         void Set(int index, T value);
         void Resize(int newSize);
@@ -36,10 +36,10 @@ class DynamicArray {
 //////////////////////////////////////////////////////////////
 
 template <typename T>
-DynamicArray<T>::DynamicArray(T *items, int count, int h, int w) {
+DynamicArray<T>::DynamicArray(T *items, int count) {
     pointer = new T[count];
-    width = w;
-    heigth = h;
+    //width = w;
+    //heigth = h;
     for (int i = 0; i < count; i++) {
         pointer[i] = items[i];
     }
@@ -56,8 +56,8 @@ template <typename T>
 DynamicArray<T>::DynamicArray(DynamicArray<T> *dynamicArray) {
     pointer = new T[dynamicArray->length];
     length = dynamicArray->length;
-    heigth = dynamicArray->heigth;
-    width = dynamicArray->width;
+    //heigth = dynamicArray->heigth;
+    //width = dynamicArray->width;
     for (int i = 0; i < length; i++) {
         pointer[i] = (dynamicArray->pointer)[i];
     }
@@ -75,7 +75,7 @@ template <typename T>
 int DynamicArray<T>::GetLength() {
     return length;
 }
-
+/*
 template <typename T>
 int DynamicArray<T>::GetWidth() {
     return width;
@@ -85,7 +85,7 @@ template <typename T>
 int DynamicArray<T>::GetHeigth() {
     return heigth;
 }
-
+*/
 
 template <typename T>
 void DynamicArray<T>::Set(int index, T value) {
