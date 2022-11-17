@@ -4,15 +4,21 @@
 #include <stdlib.h>
 #include <algorithm>
 #include <time.h>
+#include <gtest/gtest.h>
 
 //#include "tests.h"
-
 #include "f_lab2_sequence.h"
 //#include "f_lab2_dynamicarray.h"
 #include "f_lab2_arraysequence.h"
 //#include "f_lab2_linkedlist.h"
 #include "f_lab2_linkedlistsequence.h"
 #include "f_lab4_sort.h"
+
+int test_main() {
+	::testing::InitGoogleTest();
+	return RUN_ALL_TESTS();
+}
+
 
 void parsing(int argc, char *argv[], bool &shell, int &size, int &step, string &output, bool &selection, bool &quick) {
     int i = 1;
@@ -192,6 +198,9 @@ int main(int argc, char *argv[]) {
 
 
     delete[] items;
+
+    return test_main();
+
 /*
     int *it = new int[10];
     for (int i  = 0; i < 10; i++) {

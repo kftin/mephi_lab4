@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "f_lab2_sequence.h"
+#include <time.h>
 
 template <typename T>
 class ISorter {
@@ -65,7 +66,11 @@ public:
 
     Sequence<T> *sort(Sequence<T> *seq, int (*comp)(T left, T rigth)) override {
         Sequence<T> *res = seq->Copy();
+        clock_t start = clock();
         Qsorter(res, 0, res->GetLength() - 1, comp);
+        clock_t end = clock();
+        double time = (double)(end - start) / CLOCKS_PER_SEC;
+        cout << time << endl;
         return res;
     }
 };
